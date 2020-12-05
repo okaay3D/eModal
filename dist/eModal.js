@@ -160,6 +160,8 @@
                                 case 'text':
                                     btn.html(btnOp[index]);
                                     break;
+                                case 'style':
+                                    break;
                                 default:
                                     //all other possible HTML attributes to button element
                                     btn.attr(index, btnOp[index]);
@@ -548,25 +550,7 @@
 
             params.async = true;
 
-            if (params.buttons) {
-                var btn;
-                for (var i = 0, k = params.buttons.length; i < k; i++) {
-                    btn = params.buttons[i];
-                    btn.style = (btn.style || 'default') + ' pull-left';
-                    btn.type = btn.type || 'button';
-                }
-            }
-
-            var buttons = _getFooter([{
-                close: true,
-                type: 'reset',
-                text: LABEL.OK,
-                style: KEY_DANGER
-            }, {
-                close: false,
-                type: EVENT_SUBMIT,
-                text: defaultSettings.confirmLabel
-            }].concat(params.buttons || []));
+            var buttons = _getFooter(params.buttons);
 
             var attrs;
 
