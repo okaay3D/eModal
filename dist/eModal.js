@@ -572,9 +572,9 @@
             params.onHide = submit;
 
             params.message = $('<form role=form style="margin-bottom:0;">' +
-                '<div class=modal-body>' +
-                '<label for=prompt-input class=control-label>' + (params.message || EMPTY) + '</label>' +
-                '<input type=text class=form-control required autocomplete="on" value="' + (params.value || EMPTY) + (params.pattern ? '" pattern="' + params.pattern : EMPTY) + '">' +
+                '<div class="modal-body">' +
+                '<label for="prompt-input" class="control-label">' + (params.message || EMPTY) + '</label>' +
+                `<input type="${params.inputType ? params.inputType : "text"}" class="form-control" required autocomplete="on" value="` + (params.value || EMPTY) + (params.pattern ? '" pattern="' + params.pattern : EMPTY) + '">' +
                 '</div></form>')
                 .append(buttons)
                 .on(EVENT_SUBMIT, submit);
