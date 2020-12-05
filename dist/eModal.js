@@ -568,13 +568,25 @@
                 text: defaultSettings.confirmLabel
             }].concat(params.buttons || []));
 
+            var attrs;
+
+            if (params.attrs) {
+                if (!attrs) {
+                    attrs = '';
+                }
+
+                for (var prop in params.attrs) {
+                    attrs += `${prop}="${params.attrs[prop]}"`;
+                }
+            }
+
             params.buttons = false;
             params.onHide = submit;
 
             params.message = $('<form role=form style="margin-bottom:0;">' +
                 '<div class="modal-body">' +
                 '<label for="prompt-input" class="control-label">' + (params.message || EMPTY) + '</label>' +
-                `<input type="${params.inputType ? params.inputType : "text"}" class="form-control" required autocomplete="on" value="` + (params.value || EMPTY) + (params.pattern ? '" pattern="' + params.pattern : EMPTY) + '">' +
+                `<input type="${params.inputType || 'text'}" class="form-control" required autocomplete="on" value="${params.value || EMPTY}" ${params.pattern ? 'pattern="' + params.pattern + '"' : EMPTY} ${attrs || EMPTY}>` +
                 '</div></form>')
                 .append(buttons)
                 .on(EVENT_SUBMIT, submit);
